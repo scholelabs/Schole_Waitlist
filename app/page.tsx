@@ -14,18 +14,18 @@ export default function Home() {
       </header>
       <div className="flex flex-col items-center justify-center flex-grow space-y-6">
         <div className="text-center px-4">
-          <h2 className="text-4xl font-semibold">A revolutionary new School Management<br /> is coming soon.</h2>
-          <p className="mt-2">Our engineers are hard at work building the first of its kind product for educators and <br /> academic institutions in Africa.</p>
-          <h1 className="text-6xl mt-16 ">Join Our Waitlist</h1>
-          <p>Get to be part of the first to use the app for free.</p>
+          <h2 className="md:text-[32px] text-[25px] font-semibold">A revolutionary new School Management<br /> is coming soon.</h2>
+          <p className="md:mt-2 mt-8 md:text-[20px] text-[12px]">Our engineers are hard at work building the first of its kind product for educators and <br /> academic institutions in Africa.</p>
+          <h1 className="text-[31px] md:text-[80px] mt-8 ">Join Our Waitlist</h1>
+          <p className="md:text-[16px] text-[10px]">Get to be part of the first to use the app for free.</p>
         </div>
-        <div className="flex flex-col items-center space-y-4 w-full px-4">
+        <div className="flex flex-col items-center space-y-4 mt-10 w-full px-4">
           <div className="flex items-center space-x-2 bg-black bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
             <span className="text-white">@</span>
             <input
               type="email"
               placeholder="Enter email address"
-              className="bg-transparent text-white placeholder-gray-400 focus:outline-none flex-1"
+              className="bg-transparent text-white placeholder-gray- pl focus:outline-none flex-1"
             />
           </div>
           <button className="bg-teal-400 text-black rounded-full px-8 py-4">
@@ -33,7 +33,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <footer className="text-center py-4">
+      <footer className="text-center py-4 text-[10px]">
         All Rights Reserved 2024 © Scholẽ.com
       </footer>
     </main>
