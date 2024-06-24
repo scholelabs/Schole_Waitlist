@@ -4,20 +4,19 @@
 
 
 @font-face {
-  /* font-family: 'MyCustomFont'; */
-  src: url('/fonts/TT Travels Next Trial Regular.ttf') format('woff2');
+  font-family: 'SegoeUI';
+  src: url('/app/fonts/segoe-ui/Segoe_UI.ttf') format('truetype'); 
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
-  font-family: 'MyCustomFont';
-  src: url('/fonts/MyCustomFont/MyCustomFont-Bold.woff2') format('woff2');
+  font-family: 'TTTravelsNextTrialBlack';
+  src: url('/app/fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf') format('truetype'); 
   font-weight: bold;
   font-style: normal;
-  font-display: swap;
 }
+
 *{
   margin: 0;
   padding: 0;

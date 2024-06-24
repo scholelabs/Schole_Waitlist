@@ -14,8 +14,8 @@ export default function Home() {
       </header>
       <div className="flex flex-col items-center justify-center flex-grow space-y-6">
         <div className="text-center px-4">
-          <h2 className="md:text-[32px] text-[25px] font-semibold">A revolutionary new School Management<br /> is coming soon.</h2>
-          <p className="md:mt-2 mt-8 md:text-[20px] text-[12px]">Our engineers are hard at work building the first of its kind product for educators and <br /> academic institutions in Africa.</p>
+          <h2 className="md:text-[32px] text-[25px] font-segoe font-semibold">A revolutionary new School Management<br /> is coming soon.</h2>
+          <p className="md:mt-2 mt-8 md:text-[20px] font-tttravels text-[12px]">Our engineers are hard at work building the first of its kind product for educators and <br /> academic institutions in Africa.</p>
           <h1 className="text-[31px] md:text-[80px] mt-8 ">Join Our Waitlist</h1>
           <p className="md:text-[16px] text-[10px]">Get to be part of the first to use the app for free.</p>
         </div>
