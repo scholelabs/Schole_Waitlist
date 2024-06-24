@@ -11,6 +11,10 @@ const config: Config = {
       backgroundImage: {
         'custom-image': "url('/waitlistbg.png')"
       },
+      fontFamily: {
+        segoe: ['SegoeUI', 'sans-serif'],
+        tttravels: ['TTTravelsNextTrialBlack', 'sans-serif'],
+      },
     },
   },
   plugins: [],
