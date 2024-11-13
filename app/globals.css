@@ -2,22 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
-  font-family: 'SegoeUI';
-  src: url('/app/fonts/segoe-ui/Segoe_UI.ttf') format('truetype'); 
+  font-family: "SegoeUI";
+  src: url("/fonts/segoe-ui/Segoe_UI.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'TTTravelsNextTrialBlack';
-  src: url('/app/fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf') format('truetype'); 
+  font-family: "TTTravelsNextTrialBlack";
+  src: url("/fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf")
+    format("truetype");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

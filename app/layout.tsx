@@ -1,33 +1,32 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import localFont from 'next/font/local'
+import localFont from "next/font/local";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const travels = localFont({
-  src: './fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf',
-  display: 'swap'
-})
+  src: "./fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf",
+  display: "swap",
+});
 
 const myFonts = localFont({
   src: [
     {
-      path: './fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf'
-
+      path: "./fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf",
     },
     {
-      path: './fonts/segoe-ui/Segoe_UI.ttf',
-      weight: '400',
-      style: 'normal'
-    }
+      path: "./fonts/segoe-ui/Segoe_UI.ttf",
+      weight: "400",
+      style: "normal",
+    },
   ],
-  display: 'swap'
-})
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Schole Labs",
-  description: "Schole SMS"
+  description: "Schole SMS",
 };
 
 export default function RootLayout({
