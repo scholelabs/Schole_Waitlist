@@ -1,27 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
-
-const travels = localFont({
-  src: "./fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf",
-  display: "swap",
+const segoe = localFont({
+  src: "../public/fonts/segoe-ui/Segoe_UI.ttf",
+  variable: "--font-segoe",
 });
 
-const myFonts = localFont({
-  src: [
-    {
-      path: "./fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf",
-    },
-    {
-      path: "./fonts/segoe-ui/Segoe_UI.ttf",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  display: "swap",
+const ttTravels = localFont({
+  src: "../public/fonts/TTTravelsNextTrialBlack/TTTravelsNextTrialRegular.ttf",
+  variable: "--font-tttravels",
 });
 
 export const metadata: Metadata = {
@@ -36,8 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* className={`${inter.variable} ${roboto_mono.variable}`} */}
-      <body className={myFonts.className}>{children}</body>
+      <body className={`${segoe.variable} ${ttTravels.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

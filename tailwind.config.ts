@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'custom-image': "url('/waitlistbg.png')"
+        "custom-image": "url('/waitlistbg.png')",
       },
       fontFamily: {
-        segoe: ['SegoeUI', 'sans-serif'],
-        tttravels: ['TTTravelsNextTrialBlack', 'sans-serif'],
+        segoe: ["var(--font-segoe)"],
+        tttravels: ["var(--font-tttravels)"],
       },
     },
   },
