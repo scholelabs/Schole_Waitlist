@@ -1,6 +1,11 @@
+"use client";
 import Image from "next/image";
+import { toast } from "@/hooks/use-toast";
+import { joinWaitlist } from "@/actions/waitlist";
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
   return (
     <main className="min-h-screen bg-black font-segoe text-white bg-custom-image bg-contain bg-left-bottom md:bg-left-bottom bg-no-repeat flex flex-col justify-between">
       <header className="flex justify-center py-4 mt-8">
@@ -36,9 +41,37 @@ export default function Home() {
               type="email"
               placeholder="Enter email address"
               className="bg-transparent text-white placeholder-gray- pl focus:outline-none flex-1"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <button className="bg-teal-400 text-black rounded-full px-8 py-4">
+          <button
+            className="bg-teal-400 text-black rounded-full px-8 py-4"
+            onClick={() =>{
+              if(!email) {
+                return toast({
+                  title: "Error",
+                  description: "Please enter a valid email address",
+                  variant: "destructive",
+                });
+              }
+              joinWaitlist(email)
+                .then(() => {
+                  setEmail("")
+                  toast({
+                    title: "Success",
+                    description: "You have successfully joined the waitlist",
+                  })
+                })
+                .catch(() =>
+                  toast({
+                    title: "Error",
+                    description: "An error occurred while joining the waitlist",
+                    variant: "destructive",
+                  })
+                );
+            }}
+          >
             Get Early Invitation
           </button>
         </div>
