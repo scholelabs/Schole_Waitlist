@@ -91,14 +91,6 @@ export const WaitlistEmailTemplate = () => {
             We’re counting down the days until we can share Schole App with you!
           </p>
 
-          <div className="mt-6 text-center">
-            <Link
-              href="#"
-              className="bg-[#41EEEE] text-black px-6 py-2 rounded-full shadow-md hover:bg-blue-600"
-            >
-              Learn More About Schole App
-            </Link>
-          </div>
           <p className="text-gray-700 text-sm mt-7 text-center">
             Thank you for being part of this journey. If you have any questions
             or ideas to share, we’d love to hear from you.
