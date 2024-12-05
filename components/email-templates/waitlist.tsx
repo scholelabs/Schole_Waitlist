@@ -23,7 +23,7 @@ interface WaitlistEmailProps {
 }
 
 export const WaitlistEmailTemplate: React.FC<WaitlistEmailProps> = ({
-  recipientName = "Joke",
+  recipientName,
 }) => {
   const steps = [
     {
@@ -37,7 +37,7 @@ export const WaitlistEmailTemplate: React.FC<WaitlistEmailProps> = ({
       bgColor: "#FFF1F2", // Equivalent to bg-pink-100
     },
     {
-      icon: "/rocket.png",
+      icon: getImageUrl("/rocket.png"),
       text: "Be among the first to experience a smarter way to manage school operations.",
       bgColor: "#DBEAFE", // Equivalent to bg-blue-100
     },
@@ -89,7 +89,14 @@ export const WaitlistEmailTemplate: React.FC<WaitlistEmailProps> = ({
               textAlign: "center",
             }}
           >
-            <Text className="!text-[32px] !mb-4 !text-black">
+            <Text
+              style={{
+                color: "#292929",
+                textAlign: "center",
+                marginBottom: "16px",
+                fontSize: "20px",
+              }}
+            >
               Hi <span style={{ fontWeight: "bold" }}>{recipientName}</span>,
             </Text>
 
@@ -184,12 +191,12 @@ export const WaitlistEmailTemplate: React.FC<WaitlistEmailProps> = ({
                   <Img
                     src={step.icon}
                     alt={`Step ${index + 1}`}
-                    width={100}
-                    height={100}
+                    width={70}
+                    height={70}
                     style={{
                       borderRadius: "50%",
-                      height: "100px!important",
-                      width: "100px!important",
+                      height: "70px!important",
+                      width: "70px!important",
                     }}
                   />
                 </Column>
