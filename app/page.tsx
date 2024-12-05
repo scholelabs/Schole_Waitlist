@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { toast } from "@/hooks/use-toast";
 import { joinWaitlist } from "@/actions/waitlist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PhoneSvg from "@/components/svgs/PhoneSvg";
 import NameSvg from "@/components/svgs/NameSvg";
 import SchoolName from "@/components/svgs/SchoolName";
@@ -20,7 +20,6 @@ export default function Home() {
   });
   const [showModal, setShowModal] = useState(false)
   const [loading, setLoading] = useState(false)
-
 
   const hasInvalidFields = Object.values(formDetails).some((value) => !value);
 
@@ -44,10 +43,6 @@ export default function Home() {
             school: "",
           });
           setShowModal(true)
-          toast({
-            title: "Success",
-            description: "You have successfully joined the waitlist"
-          })
         })
         .catch(() =>
           toast({
@@ -67,7 +62,7 @@ export default function Home() {
     <main className="min-h-screen bg-black font-segoe text-white bg-custom-image bg-contain bg-left-bottom md:bg-left-bottom bg-no-repeat flex flex-col justify-between">
       <header className="flex justify-center py-4 mt-8">
         <Image
-          src="/waitlistlogo.png"
+          src="/logo.svg"
           width={150}
           height={150}
           className=""

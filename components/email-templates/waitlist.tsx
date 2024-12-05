@@ -43,12 +43,12 @@ export const WaitlistEmailTemplate: React.FC<WaitlistEmailProps> = ({
     },
   ];
 
+  // { name: "Facebook", icon: getImageUrl("/facebook.svg"), url: "#" },
+  // { name: "YouTube", icon: getImageUrl("/youtube.svg"), url: "#" },
   const socialLinks = [
-    { name: "X", icon: "x-logo.png", url: "#" },
-    { name: "Instagram", icon: "instagram-logo.png", url: "#" },
-    { name: "Facebook", icon: "facebook-logo.png", url: "#" },
-    { name: "YouTube", icon: "youtube-logo.png", url: "#" },
-    { name: "LinkedIn", icon: "linkedin-logo.png", url: "#" },
+    { name: "X", icon: getImageUrl("/twitter.svg"), url: "https://x.com/ScholeLabs" },
+    { name: "Instagram", icon: getImageUrl("/instagram.svg"), url: "https://www.instagram.com/scholelabs/" },
+    { name: "LinkedIn", icon: getImageUrl("/linkedin.svg"), url: "https://www.linkedin.com/in/schol%C3%A9-labs-ab2593321/" }
   ];
 
   return (
@@ -273,6 +273,7 @@ export const WaitlistEmailTemplate: React.FC<WaitlistEmailProps> = ({
           <Section
             style={{ textAlign: "center", marginTop: "20px", color: "#292929" }}
           >
+
             <Text style={{ margin: 0, fontSize: "12px" }}>
               Copyright © {new Date().getFullYear()}
             </Text>
