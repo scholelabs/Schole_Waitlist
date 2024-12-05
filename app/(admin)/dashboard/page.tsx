@@ -14,7 +14,7 @@ import { Inbox } from "lucide-react";
 
 
 export default async function Page() {
-  const waitlists = (await prisma.waitlist.findMany()).reverse();
+  const waitlists = await (await prisma.waitlist.findMany()).reverse();
 
   return (
     <div className="mt-8">
