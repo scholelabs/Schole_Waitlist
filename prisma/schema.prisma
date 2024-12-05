@@ -10,7 +10,7 @@ datasource db {
 model Waitlist {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   email  String @unique
-  school String
+  school String @unique
   name   String
   phone  String
 }
