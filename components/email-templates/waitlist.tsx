@@ -1,130 +1,279 @@
-import React from "react";
-
+import * as React from "react";
 import {
-  FaTwitter,
-  FaInstagram,
-  FaFacebook,
-  FaYoutube,
-  FaLinkedin
-} from "react-icons/fa";
+  Body,
+  Container,
+  Head,
+  Html,
+  Img,
+  Link,
+  Section,
+  Text,
+  Row,
+  Column,
+} from "@react-email/components";
 
-import Link from "next/link";
-import Image from "next/image";
+function getImageUrl(path: string) {
+  // In Next.js, use the full site URL
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  return `${baseUrl}${path}`;
+}
 
-export const WaitlistEmailTemplate = () => {
+interface WaitlistEmailProps {
+  recipientName?: string;
+}
+
+export const WaitlistEmailTemplate: React.FC<WaitlistEmailProps> = ({
+  recipientName = "Joke",
+}) => {
   const steps = [
     {
-      icon: (
-        <Image
-          src="/mail.png"
-          alt="Mail Icon"
-          width={80} height={80}
-        />
-      ),
+      icon: getImageUrl("/mail.png"),
       text: "Keep an eye on your inbox! Your early access invitation is coming soon.",
-      bgColor: "bg-purple-100",
+      bgColor: "#F3E8FF", // Equivalent to bg-purple-100
     },
     {
-      icon: (
-        <Image
-          src="/gift.png"
-          alt="Gift Icon"
-          width={80} height={80}
-        />
-      ),
-      text: "Exclusive perks await our early adopters (hint: you’re one of them!).",
-      bgColor: "bg-pink-100",
+      icon: getImageUrl("/gift.png"),
+      text: "Exclusive perks await our early adopters (hint: you're one of them!).",
+      bgColor: "#FFF1F2", // Equivalent to bg-pink-100
     },
     {
-      icon: (
-        <Image
-          src="/rocket.png" 
-          alt="Rocket Icon"
-          width={80} height={80}
-        />
-      ),
+      icon: "/rocket.png",
       text: "Be among the first to experience a smarter way to manage school operations.",
-      bgColor: "bg-blue-100",
+      bgColor: "#DBEAFE", // Equivalent to bg-blue-100
     },
   ];
 
   const socialLinks = [
-    { name: "X", icon: <FaTwitter className="w-5 h-5" />, url: "#" },
-    { name: "Instagram", icon: <FaInstagram className="w-5 h-5" />, url: "#" },
-    { name: "Facebook", icon: <FaFacebook className="w-5 h-5" />, url: "#" },
-    { name: "YouTube", icon: <FaYoutube className="w-5 h-5" />, url: "#" },
-    { name: "LinkedIn", icon: <FaLinkedin className="w-5 h-5" />, url: "#" }
+    { name: "X", icon: "x-logo.png", url: "#" },
+    { name: "Instagram", icon: "instagram-logo.png", url: "#" },
+    { name: "Facebook", icon: "facebook-logo.png", url: "#" },
+    { name: "YouTube", icon: "youtube-logo.png", url: "#" },
+    { name: "LinkedIn", icon: "linkedin-logo.png", url: "#" },
   ];
 
   return (
-    <div className="bg-[#EAF0F3] min-h-screen flex items-center justify-center">
-      <div className="max-w-lg w-full rounded-lg p-8 text-center">
-        <div className="flex flex-col items-center">
-          <div className="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-blue-100">
-            <Image
-              src="/logo-image.png"
+    <Html>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          {`
+          body {
+            font-family: 'Inter', sans-serif;
+          }
+        `}
+        </style>
+      </Head>
+      <Body
+        style={{
+          backgroundColor: "#EAF0F3",
+          fontFamily: "'Inter', sans-serif",
+        }}
+      >
+        <Container className="!p-[40px] bg-[#EAF0F3] max-w-[650px] mx-auto">
+          {/* Logo Section */}
+          <Section className="text-center mb-5">
+            <Img
+              src={getImageUrl("/logo-image.png")}
               alt="Schole App Logo"
-              width={40}
-              height={40}
+              width={80}
+              height={80}
+              style={{ margin: "0 auto" }}
             />
-          </div>
+          </Section>
 
-          <h1 className="text-xl text-black font-normal mb-2">Hi <span className="text-black font-bold">Joke</span>,</h1>
-          <p className="font-normal text-[#000000] text-[27px]">You’re on the List 🚀</p>
-          <p className="text-sm text-[#5E5E5E] mt-1">Get Ready for Something Exciting</p>
-        </div>
+          <Section
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Text className="!text-[32px] !mb-4 !text-black">
+              Hi <span style={{ fontWeight: "bold" }}>{recipientName}</span>,
+            </Text>
 
-        <div className="text-left mt-6 shadow-xl rounded-xl p-8 bg-white w-full">
-          <p className="text-[#292929] font-normal leading-[20px] text-center">
-            We’re thrilled to welcome you to the Schole App community! 🎉
-          </p>
-          <p className="text-[#292929] font-normal leading-[20px] mt-3 text-center mb-3">
-            By signing up for our waitlist, you’ve taken the first step toward
-            transforming how schools manage their records. Schole App is more
-            than just a filing system, it’s your school’s new best friend for
-            simplifying documentation, saving time, and staying organized.
-          </p>
-          <p className="text-center text-[#292929]">Here’s what’s next:</p>
+            <Text
+              style={{
+                fontSize: "27px",
+                color: "#000000",
+                textAlign: "center",
+                margin: "0 0 10px 0",
+              }}
+            >
+              You're on the List 🚀
+            </Text>
+            <Text
+              style={{
+                fontSize: "14px",
+                color: "#5E5E5E",
+                textAlign: "center",
+                margin: "0 0 20px 0",
+              }}
+            >
+              Get Ready for Something Exciting
+            </Text>
+          </Section>
 
-          <div className="mt-6 space-y-8">
+          {/* Main Content */}
+          <Section
+            style={{
+              backgroundColor: "white",
+              borderRadius: "10px",
+              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+            }}
+          >
+            <Text
+              style={{
+                color: "#292929",
+                textAlign: "center",
+                fontWeight: "400",
+                lineHeight: "1.6",
+                margin: "34px 0 15px 0",
+                fontSize: "15px",
+                padding: "0 20px",
+              }}
+            >
+              We're thrilled to welcome you to the Schole App community! 🎉
+            </Text>
+
+            <Text
+              style={{
+                color: "#292929",
+                textAlign: "center",
+                fontWeight: 400,
+                lineHeight: "1.6",
+                margin: "0 0 20px 0",
+                fontSize: "15px",
+                padding: "0 20px",
+              }}
+            >
+              By signing up for our waitlist, you've taken the first step toward
+              transforming how schools manage their records. Schole App is more
+              than just a filing system, it's your school's new best friend for
+              simplifying documentation, saving time, and staying organized.
+            </Text>
+
+            <Text
+              style={{
+                color: "#292929",
+                textAlign: "center",
+                fontWeight: 400,
+                margin: "24px 0 0 0",
+                fontSize: "15px",
+                padding: "10px 0 30px 0",
+              }}
+            >
+              Here's what's next:
+            </Text>
+
+            {/* Steps */}
             {steps.map((step, index) => (
-              <div key={index} className="flex items-start">
-                <div className={` flex items-center justify-center ${step.bgColor} rounded-full`}>
-                  {step.icon}
-                </div>
-                <p className="ml-5 text-[#292929] font-inter">{step.text}</p>
-              </div>
+              <Row
+                key={index}
+                style={{
+                  marginBottom: "32px",
+                  alignItems: "center",
+                  padding: "0 20px",
+                }}
+              >
+                <Column
+                  width={80}
+                  style={{ textAlign: "center", paddingLeft: "30px" }}
+                >
+                  <Img
+                    src={step.icon}
+                    alt={`Step ${index + 1}`}
+                    width={100}
+                    height={100}
+                    style={{
+                      borderRadius: "50%",
+                      height: "100px!important",
+                      width: "100px!important",
+                    }}
+                  />
+                </Column>
+                <Column>
+                  <Text
+                    style={{
+                      color: "#292929",
+                      margin: 0,
+                      padding: "0 30px 0 20px",
+                      fontSize: "15px",
+                    }}
+                  >
+                    {step.text}
+                  </Text>
+                </Column>
+              </Row>
             ))}
-          </div>
 
-         <div className=" flex flex-col items-center justify-center gap-7">
-         <p className="text-gray-700 mt-6 font-normal text-center">We’re counting down the days until we can share Schole App with you!</p>
+            <Text
+              style={{
+                color: "#292929",
+                textAlign: "center",
+                fontSize: "15px",
+                margin: "40px 0 10px 0",
+              }}
+            >
+              We're counting down the days until we can share Schole App with
+              you!
+            </Text>
 
-          <p className="text-[#292929] text-sm text-center">
-            Thank you for being part of this journey. If you have any questions
-            or ideas to share, we’d love to hear from you.
-          </p>
-         </div>
-        </div>
+            <Text
+              style={{
+                color: "#292929",
+                textAlign: "center",
+                fontSize: "15px",
+                margin: "40px 20px 30px",
+              }}
+            >
+              Thank you for being part of this journey. If you have any
+              questions or ideas to share, we'd love to hear from you.
+            </Text>
+          </Section>
 
-        <footer className="mt-8 text-sm text-gray-500">
-          <div className="flex justify-center space-x-4 my-3">
+          {/* Closing Messages */}
+          <Section style={{ textAlign: "center", marginTop: "20px" }}></Section>
+
+          {/* Social Links */}
+          <Section style={{ textAlign: "center", marginTop: "20px" }}>
             {socialLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.url}
-                className="hover:text-blue-500"
-                aria-label={link.name}
+                style={{
+                  margin: "0 10px",
+                  display: "inline-block",
+                  textDecoration: "none",
+                }}
               >
-                {link.icon}
+                <Img src={link.icon} alt={link.name} width={24} height={24} />
               </Link>
             ))}
-          </div>
-          <p className="text-[#000000 font-normal]">Copyright © 2024</p>
-          <p className="font-bold my-2 text-[#000000]">Schole Labs Limited</p>
-        </footer>
-      </div>
-    </div>
+          </Section>
+
+          {/* Footer */}
+          <Section
+            style={{ textAlign: "center", marginTop: "20px", color: "#292929" }}
+          >
+            <Text style={{ margin: 0, fontSize: "12px" }}>
+              Copyright © {new Date().getFullYear()}
+            </Text>
+            <Text
+              style={{
+                margin: "5px 0",
+                fontWeight: "bold",
+                fontSize: "14px",
+                color: "#292929",
+              }}
+            >
+              Schole Labs Limited
+            </Text>
+          </Section>
+        </Container>
+      </Body>
+    </Html>
   );
 };
 

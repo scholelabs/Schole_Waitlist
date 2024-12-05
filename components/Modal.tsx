@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import Image from "next/image"
 
 interface ModalProps{
   open: boolean
@@ -21,19 +22,17 @@ export function Modal({open, onOpenChange}: ModalProps){
 
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Share link</DialogTitle>
           <DialogDescription>
-            Anyone who has this link will be able to view this.
+            <div className="text-center">
+              <Image src='/modallogo.svg' alt="moda logo" height={500} width={500} />
+              <p className="font-semibold text-[20px] leading-7 mt-5">Welcome to the Scholẽ Waitlist </p>
+              <p className="font-normal text-[16px] leading-[22px]">We’re glad you’re here. Keep an eye on your inbox! Your early access invitation is coming soon.</p>
+            </div>
           </DialogDescription>
         </DialogHeader>
-        <div className="flex items-center space-x-2">
-          <div className="grid flex-1 gap-2">
-            <p>read only</p>
-          </div>
-        </div>
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
-            <button>X</button>
+            {/* <button>X</button> */}
           </DialogClose>
         </DialogFooter>
       </DialogContent>

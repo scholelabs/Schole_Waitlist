@@ -1,34 +1,33 @@
 "use server"
 import { WaitlistEmailTemplate } from "@/components/email-templates/waitlist";
 import prisma from "@/lib/prisma"
-import { faker } from "@faker-js/faker";
 import { Resend } from "resend";
 
 
 const resend = new Resend("re_d3hvTxy4_3C41SX4qWtP2tb7X6xXiEtcU");
 
+export interface WaitlistPayload {
+  email: string;
+  phone: string;
+  name: string;
+  school: string;
+}
 
-export const joinWaitlist = async (email: string) => {
+export const joinWaitlist = async (payload: WaitlistPayload) => {
   try {
     await prisma.waitlist.create({
-      data: {
-        email: email,
-        phone: faker.phone.number(),
-        name: faker.person.fullName(),
-        school: faker.company.name(),
-      },
+      data: payload,
     });
     const { data, error } = await resend.emails.send({
       from: "Schole Labs <info@scholelabs.com>",
-      to: email,
+      to: payload.email,
       subject: "Get ready for something exciting",
-      react: WaitlistEmailTemplate()
+      react: WaitlistEmailTemplate({recipientName: payload.name}),
     });
     if (error) {
       throw error;
     }
-    console.log(data);
   } catch (error) {
-   throw error;
+    throw error;
   }
 };
