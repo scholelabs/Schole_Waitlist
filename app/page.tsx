@@ -3,28 +3,37 @@ import Image from "next/image";
 import { toast } from "@/hooks/use-toast";
 import { joinWaitlist } from "@/actions/waitlist";
 import { useState } from "react";
+import type {WaitlistPayload} from "@/actions/waitlist";
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [school, setSchool] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [formDetails, setFormDetails] = useState<WaitlistPayload>({
+    email: "",
+    phone: "",
+    name: "",
+    school: "",
+  });
 
-  const disabledBtn = !email || !name || !school || !phone
+
+  const hasInvalidFields = Object.values(formDetails).some((value) => !value);
 
   const handleSubmit = () => {
-      if(!email || !name || !school || !phone) {
-        return toast({
-          title: "Error",
-          description: "Please enter a valid email address",
-          variant: "destructive"
-        });
-      }
+    if (hasInvalidFields) {
+      return toast({
+        title: "Error",
+        description: "Please fill all fields",
+        variant: "destructive",
+      });
+    }
 
       // const data = {email, phone, school, name}
-      joinWaitlist(email)
+      joinWaitlist(formDetails)
         .then(() => {
-          setEmail("")
+          setFormDetails({
+            email: "",
+            phone: "",
+            name: "",
+            school: "",
+          });
           toast({
             title: "Success",
             description: "You have successfully joined the waitlist"
@@ -38,6 +47,10 @@ export default function Home() {
           })
         );
   
+  }
+
+  const updateFormDetails = (key: keyof WaitlistPayload, value: string) => {
+    setFormDetails((prev) => ({ ...prev, [key]: value }));
   }
 
   return (
@@ -74,8 +87,8 @@ export default function Home() {
               type="text"
               placeholder="Enter Name Of School"
               className="bg-transparent text-white placeholder-gray- focus:outline-none flex-1"
-              value={school}
-              onChange={(e) => setSchool(e.target.value)}
+              value={formDetails.school}
+              onChange={(e) => updateFormDetails("school", e.target.value)}
             />
           </div>
           <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
@@ -83,8 +96,8 @@ export default function Home() {
               type="text"
               placeholder="Enter Your Name"
               className="bg-transparent text-white placeholder-gray- pl focus:outline-none flex-1"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formDetails.name}
+              onChange={(e) => updateFormDetails("name", e.target.value)}
             />
           </div>
           <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
@@ -93,8 +106,8 @@ export default function Home() {
               type="number"
               placeholder="Enter your phone number"
               className="bg-transparent text-white placeholder-gray- pl focus:outline-none flex-1"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={formDetails.phone}
+              onChange={(e) => updateFormDetails("phone", e.target.value)}
             />
           </div>
           <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
@@ -103,13 +116,13 @@ export default function Home() {
               type="email"
               placeholder="Enter email address"
               className="bg-transparent text-white placeholder-gray- pl focus:outline-none flex-1"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formDetails.email}
+              onChange={(e) => updateFormDetails("email", e.target.value)}
             />
           </div>
           <button
-            className="bg-teal-400 text-black rounded-full px-8 py-4"
-            disabled={disabledBtn}
+            className="bg-teal-400 text-black rounded-full px-8 py-4 disabled:cursor-not-allowed disabled:bg-gray-400"
+            disabled={hasInvalidFields}
             onClick={handleSubmit}
           >
             Get Early Invitation
