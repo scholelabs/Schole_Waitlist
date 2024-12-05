@@ -3,6 +3,10 @@ import Image from "next/image";
 import { toast } from "@/hooks/use-toast";
 import { joinWaitlist } from "@/actions/waitlist";
 import { useState } from "react";
+import PhoneSvg from "@/components/svgs/PhoneSvg";
+import NameSvg from "@/components/svgs/NameSvg";
+import SchoolName from "@/components/svgs/SchoolName";
+
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -68,8 +72,10 @@ export default function Home() {
             Get to be part of the first to use the app for free.
           </p>
         </div>
-        <div className="flex flex-col items-center space-y-4 mt-10 w-full px-4">
+        <div className="grid md:grid-cols-2 grid-cols-1 md:w-1/3 items-center gap-6 mt-10 px-4">
           <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
+          <span className="text-white"><SchoolName /></span>
+
             <input
               type="text"
               placeholder="Enter Name Of School"
@@ -79,6 +85,7 @@ export default function Home() {
             />
           </div>
           <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
+          <span className="text-white"><NameSvg /></span>
             <input
               type="text"
               placeholder="Enter Your Name"
@@ -88,7 +95,7 @@ export default function Home() {
             />
           </div>
           <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
-            <span className="text-white"></span>
+            <span className="text-white"><PhoneSvg /></span>
             <input
               type="number"
               placeholder="Enter your phone number"
@@ -98,7 +105,7 @@ export default function Home() {
             />
           </div>
           <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
-            <span className="text-white">@</span>
+            <span className="text-white text-[23px]">@</span>
             <input
               type="email"
               placeholder="Enter email address"
@@ -107,6 +114,7 @@ export default function Home() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
+        </div>
           <button
             className="bg-teal-400 text-black rounded-full px-8 py-4"
             disabled={disabledBtn}
@@ -114,7 +122,6 @@ export default function Home() {
           >
             Get Early Invitation
           </button>
-        </div>
       </div>
       <footer className="text-center py-4 text-[10px]">
         All Rights Reserved 2024 © Scholẽ.com
