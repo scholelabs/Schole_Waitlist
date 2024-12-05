@@ -72,7 +72,16 @@ export const WaitlistEmailTemplate: React.FC<WaitlistEmailProps> = ({
           fontFamily: "'Inter', sans-serif",
         }}
       >
-        <Container className="!p-[40px] bg-[#EAF0F3] max-w-[650px] mx-auto">
+        <Container
+          style={{
+            padding: "40px",
+            margin: "0 auto",
+            backgroundColor: "#EAF0F3",
+            fontFamily: "'Inter', sans-serif",
+            width: "100%",
+            maxWidth: "650px",
+          }}
+        >
           {/* Logo Section */}
           <Section className="text-center mb-5">
             <Img
