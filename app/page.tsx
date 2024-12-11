@@ -2,12 +2,12 @@
 import Image from "next/image";
 import { toast } from "@/hooks/use-toast";
 import { joinWaitlist } from "@/actions/waitlist";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PhoneSvg from "@/components/svgs/PhoneSvg";
 import NameSvg from "@/components/svgs/NameSvg";
 import SchoolName from "@/components/svgs/SchoolName";
 
-import type {WaitlistPayload} from "@/actions/waitlist";
+import type { WaitlistPayload } from "@/actions/waitlist";
 import { Modal } from "@/components/Modal";
 import Spinner from "@/components/Spinner";
 
@@ -18,13 +18,13 @@ export default function Home() {
     name: "",
     school: "",
   });
-  const [showModal, setShowModal] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const hasInvalidFields = Object.values(formDetails).some((value) => !value);
 
   const handleSubmit = () => {
-    setLoading(true)
+    setLoading(true);
     if (hasInvalidFields) {
       return toast({
         title: "Error",
@@ -33,30 +33,30 @@ export default function Home() {
       });
     }
 
-      // const data = {email, phone, school, name}
-      joinWaitlist(formDetails)
-        .then(() => {
-          setFormDetails({
-            email: "",
-            phone: "",
-            name: "",
-            school: "",
-          });
-          setShowModal(true)
+    // const data = {email, phone, school, name}
+    joinWaitlist(formDetails)
+      .then(() => {
+        setFormDetails({
+          email: "",
+          phone: "",
+          name: "",
+          school: "",
+        });
+        setShowModal(true);
+      })
+      .catch(() =>
+        toast({
+          title: "Error",
+          description: "An error occurred while joining the waitlist",
+          variant: "destructive",
         })
-        .catch(() =>
-          toast({
-            title: "Error",
-            description: "An error occurred while joining the waitlist",
-            variant: "destructive",
-          })
-        ).finally(() => setLoading(false))
-  
-  }
+      )
+      .finally(() => setLoading(false));
+  };
 
   const updateFormDetails = (key: keyof WaitlistPayload, value: string) => {
     setFormDetails((prev) => ({ ...prev, [key]: value }));
-  }
+  };
 
   return (
     <main className="min-h-screen bg-black font-segoe text-white bg-custom-image bg-contain bg-left-bottom md:bg-left-bottom bg-no-repeat flex flex-col justify-between">
@@ -86,56 +86,63 @@ export default function Home() {
             Get to be part of the first to use the app for free.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 grid-cols-1 md:w-1/3 items-center gap-6 mt-10 px-4">
-          <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
-          <span className="text-white"><SchoolName /></span>
-
-            <input
-              type="text"
-              placeholder="Enter Name Of School"
-              className="bg-transparent text-white placeholder-gray- focus:outline-none flex-1"
-              value={formDetails.school}
-              onChange={(e) => updateFormDetails("school", e.target.value)}
-            />
-          </div>
-          <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
-          <span className="text-white"><NameSvg /></span>
-            <input
-              type="text"
-              placeholder="Enter Your Name"
-              className="bg-transparent text-white placeholder-gray- pl focus:outline-none flex-1"
-              value={formDetails.name}
-              onChange={(e) => updateFormDetails("name", e.target.value)}
-            />
-          </div>
-          <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
-            <span className="text-white"><PhoneSvg /></span>
-            <input
-              type="number"
-              placeholder="Enter your phone number"
-              className="bg-transparent text-white placeholder-gray- pl focus:outline-none flex-1"
-              value={formDetails.phone}
-              onChange={(e) => updateFormDetails("phone", e.target.value)}
-            />
-          </div>
-          <div className="flex items-center space-x-2 bg-black  bg-opacity-50 border-white border rounded-md px-4 py-4 w-full max-w-md">
+        <div className="grid md:grid-cols-2 grid-cols-1 md:w-[766px] items-center gap-6 mt-10 px-4">
+          <div className="flex items-center space-x-2 bg-[#333333B2] border-[#D1D1D1] border rounded-[8px] px-4 h-[56px] w-[364px]">
             <span className="text-white text-[23px]">@</span>
             <input
               type="email"
               placeholder="Enter email address"
-              className="bg-transparent text-white placeholder-gray- pl focus:outline-none flex-1"
+              className="bg-transparent text-white placeholder-gray-400 pl-2 focus:outline-none flex-1"
               value={formDetails.email}
               onChange={(e) => updateFormDetails("email", e.target.value)}
             />
           </div>
+          <div className="flex items-center space-x-2 bg-[#333333B2] border-[#D1D1D1] border rounded-[8px] px-4 h-[56px] w-[364px]">
+            <span className="text-white">
+              <NameSvg />
+            </span>
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="bg-transparent text-white placeholder-gray-400 pl-2 focus:outline-none flex-1"
+              value={formDetails.name}
+              onChange={(e) => updateFormDetails("name", e.target.value)}
+            />
+          </div>
+          <div className="flex items-center space-x-2 bg-[#333333B2] border-[#D1D1D1] border rounded-[8px] px-4 h-[56px] w-[364px]">
+            <span className="text-white">
+              <SchoolName />
+            </span>
+
+            <input
+              type="text"
+              placeholder="School Name"
+              className="bg-transparent text-white placeholder-gray-400 pl-2 focus:outline-none flex-1"
+              value={formDetails.school}
+              onChange={(e) => updateFormDetails("school", e.target.value)}
+            />
+          </div>
+
+          <div className="flex items-center space-x-2 bg-[#333333B2] border-[#D1D1D1] border rounded-[8px] px-4 w-[364px] h-[56px]">
+            <span className="text-white">
+              <PhoneSvg />
+            </span>
+            <input
+              type="number"
+              placeholder="Enter your phone number"
+              className="bg-transparent text-white placeholder-gray-400 pl-2 focus:outline-none flex-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              value={formDetails.phone}
+              onChange={(e) => updateFormDetails("phone", e.target.value)}
+            />
+          </div>
         </div>
-          <button
-            className="bg-teal-400 text-black rounded-full px-8 py-4 disabled:cursor-not-allowed disabled:bg-gray-400"
-            disabled={hasInvalidFields}
-            onClick={handleSubmit}
-          >
-            {loading ? <Spinner/> : 'Get Early Invitation'}
-          </button>
+        <button
+          className="bg-teal-400 text-black rounded-full px-8 py-4 disabled:cursor-not-allowed disabled:bg-gray-400"
+          disabled={hasInvalidFields}
+          onClick={handleSubmit}
+        >
+          {loading ? <Spinner /> : "Get Early Invitation"}
+        </button>
       </div>
       <footer className="text-center py-4 text-[10px]">
         All Rights Reserved 2024 © Scholẽ.com
