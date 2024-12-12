@@ -1,5 +1,5 @@
 {
-  "cron": [
+  "crons": [
     {
       "path": "/api/functions/ping-render",
       "schedule": "*/5 * * * *"
