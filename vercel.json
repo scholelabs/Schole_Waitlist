@@ -1,0 +1,8 @@
+{
+  "cron": [
+    {
+      "path": "/api/functions/ping-render",
+      "schedule": "*/5 * * * *"
+    }
+  ]
+}
