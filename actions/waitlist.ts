@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma"
 import { Resend } from "resend";
 
 
-const resend = new Resend("re_d3hvTxy4_3C41SX4qWtP2tb7X6xXiEtcU");
+const resend = new Resend("re_findanotherperson);
 
 export interface WaitlistPayload {
   email: string;
